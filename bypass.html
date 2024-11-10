@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZM Tools - Bypass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #000000, #4a148c);
+            background-attachment: fixed;
+            color: white;
+        }
+
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 0.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .bypass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bypass-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .bypass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .bypass-icon {
+            font-size: 3rem;
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+
+        .bypass-name {
+            color: #00ff88;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bypass-description {
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .bypass-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #7289DA, #99AAB5);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .bypass-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="archivos.html">Archivos</a></li>
+            <li><a href="staffs.html">Staffs</a></li>
+            <li><a href="bypass.html">Bypass</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1 style="color: #00ff88; text-align: center; margin-bottom: 2rem;">Asistente de Formularios</h1>
+        
+        <div class="bypass-card" style="margin-bottom: 2rem;">
+            <i class="fas fa-robot bypass-icon"></i>
+            <h2 class="bypass-name">FormGPT Assistant</h2>
+            <p class="bypass-description">
+                Hola, soy FormGPT, un asistente de IA diseñado para ayudarte a completar formularios de manera efectiva. 
+                Puedo proporcionarte respuestas detalladas y profesionales basadas en tus necesidades específicas.
+            </p>
+            <textarea id="userQuestion" placeholder="Escribe tu pregunta aquí..." style="width: 100%; padding: 1rem; margin: 1rem 0; background: rgba(0,0,0,0.3); color: white; border: 1px solid #00ff88; border-radius: 5px; min-height: 100px;"></textarea>
+            <button onclick="getResponse()" class="bypass-button">Obtener Respuesta</button>
+            <div id="response" style="margin-top: 1rem; color: white;"></div>
+        </div>
+
+    </div>
+    <script>
+        const qaDatabase = {
+            // SISTEMAS DE PERSONALIZACIÓN
+            'sistema cosméticos': {
+                keywords: ['cosmético', 'skin', 'personalización', 'apariencia'],
+                response: "Sistema de cosméticos:\n\n" +
+                        "• Partículas personalizadas\n" +
+                        "• Efectos visuales\n" +
+                        "• Mascotas/Companions\n" +
+                        "• Gadgets interactivos\n\n" +
+                        "Características:\n" +
+                        "• Menú personalizado\n" +
+                        "• Sistema de desbloqueo\n" +
+                        "• Previsualización\n" +
+                        "• Combinaciones únicas"
+            },
+
+            'sistema mascotas': {
+                keywords: ['mascota', 'pet', 'companion', 'familiar'],
+                response: "Sistema de mascotas:\n\n" +
+                        "• Mascotas personalizables\n" +
+                        "• Sistema de evolución\n" +
+                        "• Habilidades especiales\n" +
+                        "• Interacciones únicas\n\n" +
+                        "Características:\n" +
+                        "• Niveles de mascota\n" +
+                        "• Sistema de alimentación\n" +
+                        "• Misiones de mascota\n" +
+                        "• Coleccionables"
+            },
+
+            'sistema títulos': {
+                keywords: ['título', 'prefix', 'sufijo', 'tag'],
+                response: "Sistema de títulos:\n\n" +
+                        "• Prefijos personalizados\n" +
+                        "• Tags exclusivos\n" +
+                        "• Títulos animados\n" +
+                        "• Sufijos especiales\n\n" +
+                        "Características:\n" +
+                        "• Colores personalizados\n" +
+                        "• Efectos de texto\n" +
+                        "• Títulos temporales\n" +
+                        "• Sistema de rareza"
+            },
+
+            // SISTEMAS DE ECONOMÍA AVANZADA
+            'mercado global': {
+                keywords: ['mercado', 'ah', 'auction', 'comercio'],
+                response: "Sistema de mercado global:\n\n" +
+                        "• Casa de subastas\n" +
+                        "• Mercado de jugadores\n" +
+                        "• Sistema de ofertas\n" +
+                        "• Economía dinámica\n\n" +
+                        "Características:\n" +
+                        "• Precios dinámicos\n" +
+                        "• Historial de ventas\n" +
+                        "• Notificaciones\n" +
+                        "• Sistema anti-inflación"
+            },
+
+            'sistema banco': {
+                keywords: ['banco', 'interés', 'ahorro', 'préstamo'],
+                response: "Sistema bancario:\n\n" +
+                        "• Cuentas personales\n" +
+                        "• Intereses dinámicos\n" +
+                        "• Sistema de préstamos\n" +
+                        "• Inversiones\n\n" +
+                        "Características:\n" +
+                        "• Transferencias seguras\n" +
+                        "• Historial de transacciones\n" +
+                        "• Niveles de cuenta\n" +
+                        "• Beneficios VIP"
+            },
+
+            'sistema trabajo': {
+                keywords: ['trabajo', 'job', 'profesión', 'oficio'],
+                response: "Sistema de trabajos:\n\n" +
+                        "• Múltiples profesiones\n" +
+                        "• Progresión de nivel\n" +
+                        "• Recompensas por nivel\n" +
+                        "• Misiones laborales\n\n" +
+                        "Trabajos disponibles:\n" +
+                        "• Minero\n" +
+                        "• Granjero\n" +
+                        "• Cazador\n" +
+                        "• Comerciante"
+            },
+
+            // SISTEMAS DE CLANES
+            'sistema alianzas': {
+                keywords: ['alianza', 'diplomacia', 'relaciones', 'pacto'],
+                response: "Sistema de alianzas:\n\n" +
+                        "• Diplomacia entre clanes\n" +
+                        "• Pactos de no agresión\n" +
+                        "• Alianzas comerciales\n" +
+                        "• Guerras declaradas\n\n" +
+                        "Características:\n" +
+                        "• Sistema de reputación\n" +
+                        "• Beneficios de alianza\n" +
+                        "• Eventos entre aliados\n" +
+                        "• Diplomacia dinámica"
+            },
+
+            'sistema territorio': {
+                keywords: ['territorio', 'claim', 'tierra', 'región'],
+                response: "Sistema de territorios:\n\n" +
+                        "• Reclamación de tierras\n" +
+                        "• Protección de zonas\n" +
+                        "• Banderas personalizadas\n" +
+                        "• Control de recursos\n\n" +
+                        "Características:\n" +
+                        "• Impuestos territoriales\n" +
+                        "• Construcción protegida\n" +
+                        "• Zonas de guerra\n" +
+                        "• Recursos especiales"
+            },
+
+            'sistema jerarquía': {
+                keywords: ['jerarquía', 'rango', 'promoción', 'cargo'],
+                response: "Sistema de jerarquías:\n\n" +
+                        "• Rangos personalizables\n" +
+                        "• Permisos por rango\n" +
+                        "• Sistema de promoción\n" +
+                        "• Roles especiales\n\n" +
+                        "Características:\n" +
+                        "• Requisitos de ascenso\n" +
+                        "• Beneficios por rango\n" +
+                        "• Sistema de votación\n" +
+                        "• Historial de cambios"
+            },
+
+            // SISTEMAS DE PROTECCIÓN
+            'sistema antigrief': {
+                keywords: ['grief', 'protección', 'destrucción', 'seguridad'],
+                response: "Sistema anti-grief:\n\n" +
+                        "• CoreProtect integrado\n" +
+                        "• Rollbacks automáticos\n" +
+                        "• Detección de patrones\n" +
+                        "• Alertas en tiempo real\n\n" +
+                        "Características:\n" +
+                        "• Inspección de bloques\n" +
+                        "• Historial detallado\n" +
+                        "• Restauración selectiva\n" +
+                        "• Prevención proactiva"
+            },
+
+            'sistema backups': {
+                keywords: ['backup', 'copia', 'respaldo', 'restauración'],
+                response: "Sistema de backups:\n\n" +
+                        "• Copias automáticas\n" +
+                        "• Respaldos incrementales\n" +
+                        "• Restauración selectiva\n" +
+                        "• Backups en la nube\n\n" +
+                        "Características:\n" +
+                        "• Programación flexible\n" +
+                        "• Compresión eficiente\n" +
+                        "• Verificación de integridad\n" +
+                        "• Recuperación rápida"
+            },
+
+            // SISTEMAS DE COMUNICACIÓN
+            'sistema chat': {
+                keywords: ['chat', 'mensaje', 'comunicación', 'hablar'],
+                response: "Sistema de chat avanzado:\n\n" +
+                        "• Canales temáticos\n" +
+                        "• Chat de clanes\n" +
+                        "• Mensajes privados\n" +
+                        "• Anuncios globales\n\n" +
+                        "Características:\n" +
+                        "• Formatos personalizados\n" +
+                        "• Menciones (@usuario)\n" +
+                        "• Emojis y símbolos\n" +
+                        "• Filtros inteligentes"
+            },
+
+            'sistema tickets': {
+                keywords: ['ticket', 'soporte', 'ayuda', 'reporte'],
+                response: "Sistema de tickets:\n\n" +
+                        "• Categorías de soporte\n" +
+                        "• Priorización automática\n" +
+                        "• Seguimiento de casos\n" +
+                        "• Respuestas predefinidas\n\n" +
+                        "Características:\n" +
+                        "• Interface intuitiva\n" +
+                        "• Historial completo\n" +
+                        "• Notificaciones\n" +
+                        "• Evaluación de servicio"
+            },
+
+            // SISTEMAS DE PROGRESO
+            'sistema estadísticas': {
+                keywords: ['stats', 'estadística', 'datos', 'números'],
+                response: "Sistema de estadísticas:\n\n" +
+                        "• Tracking completo\n" +
+                        "• Leaderboards dinámicos\n" +
+                        "• Estadísticas personales\n" +
+                        "• Análisis detallado\n\n" +
+                        "Datos registrados:\n" +
+                        "• Tiempo de juego\n" +
+                        "• Logros completados\n" +
+                        "• Economía personal\n" +
+                        "• Historial de actividad"
+            },
+
+            'sistema niveles': {
+                keywords: ['nivel', 'experiencia', 'progreso', 'xp'],
+                response: "Sistema de niveles:\n\n" +
+                        "• Múltiples categorías\n" +
+                        "• Progresión personalizada\n" +
+                        "• Recompensas por nivel\n" +
+                        "• Prestigios\n\n" +
+                        "Características:\n" +
+                        "• XP personalizado\n" +
+                        "• Bonificadores\n" +
+                        "• Eventos de XP\n" +
+                        "• Rankings por nivel"
+            },
+
+            // RESPUESTAS GENERALES
+            'experiencia general': {
+                keywords: ['experiencia', 'conocimiento', 'capacidad', 'habilidad'],
+                response: "Experiencia general:\n\n" +
+                        "• 5+ años en administración de servidores\n" +
+                        "• Desarrollo de sistemas personalizados\n" +
+                        "• Gestión de comunidades grandes\n" +
+                        "• Optimización de rendimiento\n\n" +
+                        "Áreas de expertise:\n" +
+                        "• Desarrollo técnico\n" +
+                        "• Gestión de equipos\n" +
+                        "• Resolución de problemas\n" +
+                        "• Innovación continua"
+            },
+
+            'disponibilidad': {
+                keywords: ['disponible', 'horario', 'tiempo', 'dedicación'],
+                response: "Disponibilidad y compromiso:\n\n" +
+                        "• Horario flexible\n" +
+                        "• Disponibilidad para emergencias\n" +
+                        "• Compromiso a largo plazo\n" +
+                        "• Dedicación completa\n\n" +
+                        "Horarios:\n" +
+                        "• 40+ horas semanales\n" +
+                        "• Cobertura en eventos\n" +
+                        "• Guardias rotativas\n" +
+                        "• Adaptabilidad horaria"
+            }
+        };
+
+        function getResponse() {
+            const userQuestion = document.getElementById('userQuestion').value.toLowerCase();
+            const responseElement = document.getElementById('response');
+            
+            // Buscar la mejor coincidencia
+            let bestMatch = null;
+            let maxKeywords = 0;
+
+            for (let key in qaDatabase) {
+                const entry = qaDatabase[key];
+                const matchingKeywords = entry.keywords.filter(keyword => 
+                    userQuestion.includes(keyword)
+                ).length;
+
+                if (matchingKeywords > maxKeywords) {
+                    maxKeywords = matchingKeywords;
+                    bestMatch = entry.response;
+                }
+            }
+
+            // Respuesta por defecto si no hay coincidencia
+            const response = bestMatch || "Entiendo tu pregunta. Para proporcionarte una respuesta más precisa, ¿podrías reformularla o ser más específico? Tengo experiencia en:\n\n" +
+                                        "• Administración de servidores\n" +
+                                        "• Desarrollo de sistemas\n" +
+                                        "• Gestión de comunidades\n" +
+                                        "• Optimización y rendimiento\n" +
+                                        "• Soporte técnico";
+
+            responseElement.innerHTML = `
+                <div style="background: rgba(0,255,136,0.1); padding: 1rem; border-radius: 5px; margin-top: 1rem;">
+                    <strong>Respuesta:</strong><br><br>
+                    <div style="white-space: pre-line">${response}</div>
+                </div>`;
+            
+            document.getElementById('userQuestion').value = '';
+        }
+    </script>
+    </body>
+</html>

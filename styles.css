@@ -1,0 +1,10 @@
+.hover-effect {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-effect:hover {
+    color: #7289da;
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(114, 137, 218, 0.5);
+} 

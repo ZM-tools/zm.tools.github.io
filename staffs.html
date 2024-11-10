@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZM Tools - Staffs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #000000, #4a148c);
+            background-attachment: fixed;
+            color: white;
+        }
+
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 0.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            background-color: rgba(51, 51, 51, 0.95);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #00ff88;
+            background-color: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #00ff88;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .staff-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .staff-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 3px solid #00ff88;
+            padding: 3px;
+        }
+
+        .staff-name {
+            color: #00ff88;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-role {
+            color: #7289DA;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .staff-description {
+            color: #ffffff;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00ff88;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="archivos.html">Archivos</a></li>
+            <li><a href="staffs.html">Staffs</a></li>
+            <li><a href="bypass.html">Bypass</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 style="color: #00ff88; text-align: center; margin-bottom: 2rem;">Nuestro Equipo</h1>
+        
+        <div class="staff-grid">
+            <div class="staff-card">
+                <h2 class="staff-name">Zzz | Zurio</h2>
+                <p class="staff-role">Fundador & Desarrollador</p>
+                <p class="staff-description">
+                    Desarrollador principal de ZM Tools y experto en administración de servidores Minecraft.
+                    Apasionado por crear herramientas útiles para la comunidad.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <h2 class="staff-name">zMirex</h2>
+                <p class="staff-role">Fundador & Desarrollador</p>
+                <p class="staff-description">
+                    Desarrollador principal de ZM Tools y experto en administración de servidores Minecraft.
+                    Apasionado por crear herramientas útiles para la comunidad.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

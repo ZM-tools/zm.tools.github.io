@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZM Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #000000, #4a148c);
+            background-attachment: fixed;
+            color: white;
+        }
+
+        /* Estilos de navegación */
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 0.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            background-color: rgba(51, 51, 51, 0.95);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #00ff88;
+            background-color: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #00ff88;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Estilos del contenedor principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos de la sección hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilos de secciones */
+        section {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        section h2 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            font-size: 1.8rem;
+        }
+
+        section:hover h2 {
+            transform: translateX(10px);
+        }
+
+        /* Efectos de hover */
+        .hover-effect {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Estilos del botón CTA */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #7289DA, #99AAB5);
+            color: white;
+            box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(114, 137, 218, 0.4);
+        }
+
+        .cta-button .fa-discord {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="archivos.html">Archivos</a></li>
+            <li><a href="staffs.html">Staffs</a></li>
+            <li><a href="bypass.html">Bypass</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h1 class="hover-effect">¡Bienvenido a ZM tools!</h1>
+        <a href="https://discord.gg/jGV9NTBW" class="cta-button">
+            <i class="fab fa-discord"></i> Únete a nuestro Discord
+        </a>
+        <div class="hero-message" style="margin-top: 2rem;">
+            <p style="font-size: 1.2rem; line-height: 1.6; color: #ffffff; margin-bottom: 1.5rem;" class="hover-effect">
+                Hola, bienvenido a ZM tools, donde encontrarás todas las herramientas y recursos necesarios para convertirte en un excelente staff de Minecraft. Nuestra plataforma está diseñada para ayudarte a desarrollar tus habilidades y conocimientos como moderador o administrador de servidores.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.5; color: #cccccc;" class="hover-effect">
+                Explora nuestra colección de guías, comandos útiles y mejores prácticas que te ayudarán a mantener tu servidor seguro y divertido para toda la comunidad.
+            </p>
+        </div>
+    </div>
